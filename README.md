@@ -4,7 +4,7 @@
 
 **HUMAIN AI Hackathon · Challenge 3: Autonomous Enterprise**
 
-Tam takes ownership of a company's purchase requests from the employee's first message to procurement's inbox.
+Tam takes ownership of a company's purchase requests (raised by department heads or the staff they authorize) from the requester's first message to procurement's inbox.
 It drafts the request from plain Arabic or English, checks it against budget and policy **before anyone signs**,
 routes it to the right approvers, chases and escalates, drafts the justification after a rejection, renews
 expiring licenses and cancels wasted phone lines on its own, and keeps a tamper-evident audit trail.
@@ -32,7 +32,7 @@ Humans only decide.
 ## How it works
 
 ```
- Employee (chat, AR/EN)          Approvers (one click)          Auditor (questions, audit pack)
+ Requester (chat, AR/EN)         Approvers (one click)          Auditor (questions, audit pack)
           │                               ▲                                 │
           ▼                               │                                 ▼
  ┌────────────────────────── Tam agent (Claude, tool-calling loop) ──────────────────────────┐
