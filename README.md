@@ -10,8 +10,10 @@ routes it to the right approvers, chases and escalates, drafts the justification
 expiring licenses and cancels wasted phone lines on its own, and keeps a tamper-evident audit trail.
 Humans only decide.
 
-> In a typical Saudi enterprise today a purchase request is a printed form that collects 4-5 wet signatures,
-> 4-12 print/scan cycles and 10-50 emails, takes days to over a month, and about 1 in 3 come back for rework.
+> Based on the author's internship in a Saudi company's IT department: a typical purchase request was a printed
+> form needing 4 signatures and at least 4 print/scan rounds, chased by email and Teams; urgent requests took
+> 1-5 days, and larger ones (adding the CFO, sometimes the CEO and a written justification) took weeks or longer.
+> Requests often came back for vague or wrong details.
 
 ## Results (details in [`backend/evals/RESULTS.md`](backend/evals/RESULTS.md))
 
