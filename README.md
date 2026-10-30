@@ -4,7 +4,8 @@
 
 **HUMAIN AI Hackathon · Challenge 3: Autonomous Enterprise**
 
-Tam takes ownership of a company's purchase requests (raised by department heads or the staff they authorize) from the requester's first message to procurement's inbox.
+Tam takes ownership of a company's purchase requests, from the first message of a department head or authorized
+staff member to procurement's inbox.
 It drafts the request from plain Arabic or English, checks it against budget and policy **before anyone signs**,
 routes it to the right approvers, chases and escalates, drafts the justification after a rejection, renews
 expiring licenses and cancels wasted phone lines on its own, and keeps a tamper-evident audit trail.
@@ -15,7 +16,10 @@ Humans only decide.
 > 1-5 days, and larger ones (adding the CFO, sometimes the CEO and a written justification) took weeks or longer.
 > Requests often came back for vague or wrong details.
 
-## Results (details in [`backend/evals/RESULTS.md`](backend/evals/RESULTS.md))
+## Results
+
+Details in [`backend/evals/RESULTS.md`](backend/evals/RESULTS.md). Every test and case, explained one by one, in
+[`backend/evals/TEST_CASES.md`](backend/evals/TEST_CASES.md).
 
 | | Result |
 |---|---|
@@ -121,3 +125,4 @@ STC, Microsoft, Adobe) are used only where they make a policy rule realistic.
 * One over-cautious clarification on the held-out set (exhibition booth); the agent sometimes asks when it
   could act. Thresholds for "ask vs. act" could become configurable per company.
 * Vendor quotation comparison and technical evaluation forms are designed but not yet built.
+* Single company; no sign-in or role-based permissions yet (the demo switches roles from a menu).
