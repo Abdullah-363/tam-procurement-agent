@@ -1,0 +1,287 @@
+[
+  {
+    "id": "D01",
+    "category": "standard",
+    "note": "Simple low-value IT order",
+    "messages": [
+      "Order 5 27-inch monitors and 5 USB-C docking stations for the IT team."
+    ],
+    "expect": {
+      "submitted": true,
+      "method": "Low Value",
+      "gl": "6110",
+      "value": 9500,
+      "chain": [
+        "it_head",
+        "accountant",
+        "finance_head"
+      ]
+    }
+  },
+  {
+    "id": "D02",
+    "category": "standard",
+    "note": "Urgent laptops for people joining -> RFQ, CFO tier, HR confirms hires",
+    "messages": [
+      "I need 10 developer laptops for the new software team joining next month, urgent. Preferred vendor Zawaya."
+    ],
+    "expect": {
+      "submitted": true,
+      "method": "RFQ",
+      "gl": "6110",
+      "value": 65000,
+      "doc_type": "Urgent",
+      "chain_includes": [
+        "it_head",
+        "hr_head",
+        "cfo"
+      ]
+    }
+  },
+  {
+    "id": "D03",
+    "category": "error_catching",
+    "note": "Filled form with 4 planted mistakes must be caught and corrected (never submitted as given)",
+    "messages": [
+      "Please submit this PR as I filled it:\nTitle: Developer laptops for new hires\nG/L account: 6120\nMethod: Low Value\nEstimated value: 6,500 SAR\nItems: 10 x LAP-DEV-14 at 6,500 SAR each, 2 x NET-AP6-SUP at 900 SAR\nJustification: need laptops\nVendor: V-ZAW"
+    ],
+    "expect": {
+      "first_draft_errors_min": 3,
+      "if_submitted": {
+        "gl": "6110",
+        "method": "RFQ",
+        "lines_exclude": [
+          "NET-AP6-SUP"
+        ]
+      }
+    }
+  },
+  {
+    "id": "D04",
+    "category": "error_catching",
+    "note": "Price 35% above last purchase: must ask, not submit",
+    "messages": [
+      "Order 8 Wi-Fi 6 access points from Nukhba at 4,600 SAR each for the second floor."
+    ],
+    "expect": {
+      "submitted": false,
+      "reply_any": [
+        "3,400",
+        "3400",
+        "above",
+        "higher",
+        "last purchase"
+      ]
+    }
+  },
+  {
+    "id": "D05",
+    "category": "error_catching",
+    "note": "Support/licenses without the controller they belong to",
+    "messages": [
+      "Buy the 3-year support contract and 32 capacity licenses for the branch Wi-Fi controller."
+    ],
+    "expect": {
+      "if_submitted": {
+        "lines_include": [
+          "NET-CTRL-GW"
+        ]
+      }
+    }
+  },
+  {
+    "id": "D06",
+    "category": "error_catching",
+    "note": "Over budget: 195,000 vs ~181,600 left in 6110",
+    "messages": [
+      "We need 30 developer laptops for the new hires program."
+    ],
+    "expect": {
+      "submitted": false,
+      "reply_any": [
+        "budget",
+        "181,600",
+        "181600",
+        "insufficient"
+      ]
+    }
+  },
+  {
+    "id": "D07",
+    "category": "error_catching",
+    "note": "False sole-source claim: 2 vendors sell M365",
+    "messages": [
+      "Microsoft 365 E3 for 20 new staff, sole source from Mada'in Systems."
+    ],
+    "expect": {
+      "if_submitted": {
+        "method": "RFQ",
+        "value": 29000,
+        "gl": "6120",
+        "chain_includes": [
+          "hr_head"
+        ]
+      },
+      "not_method": "Sole Source"
+    }
+  },
+  {
+    "id": "D08",
+    "category": "clarification",
+    "note": "Too vague: must ask, create nothing",
+    "messages": [
+      "We need new stuff for the office."
+    ],
+    "expect": {
+      "submitted": false,
+      "max_prs": 0
+    }
+  },
+  {
+    "id": "D09",
+    "category": "language",
+    "note": "Arabic, urgent, CFO tier",
+    "messages": [
+      "نحتاج ٣ طابعات A3 لفرع جدة بشكل عاجل"
+    ],
+    "expect": {
+      "submitted": true,
+      "method": "RFQ",
+      "value": 43500,
+      "doc_type": "Urgent",
+      "chain_includes": [
+        "cfo"
+      ],
+      "reply_arabic": true
+    }
+  },
+  {
+    "id": "D10",
+    "category": "standard",
+    "note": "Furniture charged to Admin furniture account",
+    "messages": [
+      "We need 5 desks and 5 ergonomic chairs for the IT team."
+    ],
+    "expect": {
+      "submitted": true,
+      "method": "Low Value",
+      "gl": "6320",
+      "value": 16500,
+      "chain": [
+        "it_head",
+        "accountant",
+        "finance_head"
+      ]
+    }
+  },
+  {
+    "id": "D11",
+    "category": "policy",
+    "note": "Bloomberg: sole source, HR headcount, CEO tier",
+    "messages": [
+      "We need Bloomberg Terminal access for 2 new investment analysts joining Finance in December."
+    ],
+    "expect": {
+      "submitted": true,
+      "method": "Sole Source",
+      "gl": "6510",
+      "value": 210000,
+      "chain": [
+        "finance_head",
+        "hr_head",
+        "accountant",
+        "cfo",
+        "ceo"
+      ]
+    }
+  },
+  {
+    "id": "D12",
+    "category": "policy",
+    "note": "Manager phone under STC framework",
+    "messages": [
+      "Abeer Al-Juhani, our new Marketing Manager, starts this Sunday. Please arrange her company phone and line."
+    ],
+    "expect": {
+      "submitted": true,
+      "method": "Framework Agreement",
+      "gl": "6150",
+      "value": 10600,
+      "lines": {
+        "MOB-IPH-PRO": 1,
+        "PKG-MGR": 12
+      },
+      "chain": [
+        "hr_head",
+        "marketing_head",
+        "it_head"
+      ]
+    }
+  },
+  {
+    "id": "D13",
+    "category": "policy",
+    "note": "Above-grade request and existing line: must refuse",
+    "messages": [
+      "Give Rakan Al-Shahrani an iPhone Pro with unlimited roaming."
+    ],
+    "expect": {
+      "submitted": false,
+      "reply_any": [
+        "already",
+        "existing",
+        "0550 114 208",
+        "staff"
+      ]
+    }
+  },
+  {
+    "id": "D14",
+    "category": "proactive",
+    "mode": "renewal",
+    "note": "Scheduled scan: Adobe renewal + cancel 2 leavers' lines",
+    "messages": [
+      "Scheduled scan: check renewals due within 30 days and phone lines of employees who left; take ownership of anything that needs action."
+    ],
+    "expect": {
+      "renewal_ids": [
+        "RN-01"
+      ],
+      "lines_cancel_requested": [
+        "0550 114 209",
+        "0550 114 210"
+      ]
+    }
+  },
+  {
+    "id": "D15",
+    "category": "audit",
+    "mode": "audit",
+    "note": "Auditor question answered from records",
+    "messages": [
+      "Which purchases this year broke procurement policy?"
+    ],
+    "expect": {
+      "reply_all": [
+        "PR-2026-0204",
+        "PR-2026-0148"
+      ]
+    }
+  },
+  {
+    "id": "D16",
+    "category": "standard",
+    "note": "Never-bought item: NEW- code with estimate",
+    "messages": [
+      "Marketing needs 2 podcast microphone kits for the new company podcast."
+    ],
+    "expect": {
+      "submitted": true,
+      "gl": "6420",
+      "new_item": true,
+      "chain_includes": [
+        "marketing_head"
+      ]
+    }
+  }
+]

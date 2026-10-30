@@ -1,0 +1,7 @@
+timestamp,set,model,ablation,label,cases,passed,pass_rate,check_rate,invalid_submissions,avg_seconds,input_tokens,output_tokens,file
+2026-10-30 17:35,dev,claude-haiku-5-5,none,,16,15,93.8,98.6,0,11.1,381315,28121,20261030-173506_dev_claude-haiku-5-5_none
+2026-10-30 17:40,dev,claude-haiku-5-5,none,fix: don't re-confirm verified sole source,3,3,100.0,100.0,0,10.9,87465,4783,20261030-174012_dev_claude-haiku-5-5_none
+2026-10-30 17:43,dev,claude-haiku-5-5,none,after sole-source fix,16,16,100.0,100.0,0,10.7,409192,26415,20261030-174319_dev_claude-haiku-5-5_none
+2026-10-30 17:51,heldout,claude-haiku-5-5,none,first held-out run (no tuning),16,15,93.8,97.4,0,9.5,422424,20899,20261030-175101_heldout_claude-haiku-5-5_none
+2026-10-30 17:59,dev,claude-haiku-5-5,no_validation,ablation: rules layer off,16,14,87.5,95.8,1,10.8,408451,27692,20261030-175904_dev_claude-haiku-5-5_no_validation
+2026-10-30 18:02,dev,claude-haiku-5-5,no_grounding,ablation: lookup tools off,16,8,50.0,71.7,0,8.2,144494,22185,20261030-180220_dev_claude-haiku-5-5_no_grounding

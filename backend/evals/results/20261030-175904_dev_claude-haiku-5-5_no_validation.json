@@ -1,0 +1,985 @@
+{
+  "summary": {
+    "timestamp": "2026-10-30 17:59",
+    "set": "dev",
+    "model": "claude-haiku-5-5",
+    "ablation": "no_validation",
+    "label": "ablation: rules layer off",
+    "repeat": 1,
+    "cases": 16,
+    "passed": 14,
+    "pass_rate": 87.5,
+    "check_rate": 95.8,
+    "invalid_submissions": 1,
+    "avg_seconds": 10.8,
+    "input_tokens": 408451,
+    "output_tokens": 27692,
+    "by_category": {
+      "audit": "1/1",
+      "clarification": "1/1",
+      "error_catching": "3/5",
+      "language": "1/1",
+      "policy": "3/3",
+      "proactive": "1/1",
+      "standard": "4/4"
+    }
+  },
+  "results": [
+    {
+      "id": "D01",
+      "category": "standard",
+      "note": "Simple low-value IT order",
+      "passed": true,
+      "checks": [
+        {
+          "check": "submitted",
+          "ok": true,
+          "detail": "submitted=True (expected True)"
+        },
+        {
+          "check": "method",
+          "ok": true,
+          "detail": "Low Value (expected Low Value)"
+        },
+        {
+          "check": "gl",
+          "ok": true,
+          "detail": "6110 (expected 6110)"
+        },
+        {
+          "check": "value",
+          "ok": true,
+          "detail": "9,500 (expected 9,500)"
+        },
+        {
+          "check": "chain",
+          "ok": true,
+          "detail": "['it_head', 'accountant', 'finance_head'] (expected ['it_head', 'accountant', 'finance_head'])"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 6,
+      "checks_total": 6,
+      "invalid_submissions": [],
+      "seconds": 12.4,
+      "usage": {
+        "input_tokens": 28171,
+        "output_tokens": 1326
+      },
+      "tools": [
+        "search_catalog",
+        "search_catalog",
+        "get_price_history",
+        "get_price_history",
+        "check_budget",
+        "get_procurement_rules",
+        "create_pr_draft",
+        "submit_pr"
+      ],
+      "reply": "PR-2026-0301 is submitted and pending approval.\n\n- **Items:** 5× MON-27 (27in QHD monitor) at 1,250 SAR and 5× DOCK-USBC (USB-C docking station) at 650 SAR\n- **Total:** 9,500 SAR, G/L 6110 (IT Hardware)\n- **Method:** Low Value, one quote. Preferred vendor is Zawaya Tech Solutions (V-ZAW), rated 4.4. The vendor can be changed if you prefer another.\n- **Budget:** 181,600 SAR available, 172,100 SAR left after this order\n- **Approval chain:** Khalid Al-Zahrani (Head of IT) → Sara Al-Otaibi (Accountant) → Nawaf Al-Shehri (Head of Finance)\n- **Validation:** no errors or warnings. Unit prices match the last purchase prices. HR confirmation is not needed.",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "pending_approval",
+          "method": "Low Value",
+          "gl": "6110",
+          "value": 9500.0,
+          "chain": [
+            "it_head",
+            "accountant",
+            "finance_head"
+          ]
+        }
+      ],
+      "repeat": 1
+    },
+    {
+      "id": "D02",
+      "category": "standard",
+      "note": "Urgent laptops for people joining -> RFQ, CFO tier, HR confirms hires",
+      "passed": true,
+      "checks": [
+        {
+          "check": "submitted",
+          "ok": true,
+          "detail": "submitted=True (expected True)"
+        },
+        {
+          "check": "method",
+          "ok": true,
+          "detail": "RFQ (expected RFQ)"
+        },
+        {
+          "check": "gl",
+          "ok": true,
+          "detail": "6110 (expected 6110)"
+        },
+        {
+          "check": "value",
+          "ok": true,
+          "detail": "65,000 (expected 65,000)"
+        },
+        {
+          "check": "doc_type",
+          "ok": true,
+          "detail": "Urgent (expected Urgent)"
+        },
+        {
+          "check": "chain_includes",
+          "ok": true,
+          "detail": "['it_head', 'hr_head', 'accountant', 'cfo'] must include ['it_head', 'hr_head', 'cfo']"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 7,
+      "checks_total": 7,
+      "invalid_submissions": [],
+      "seconds": 10.4,
+      "usage": {
+        "input_tokens": 32193,
+        "output_tokens": 1346
+      },
+      "tools": [
+        "search_catalog",
+        "get_price_history",
+        "get_procurement_rules",
+        "check_budget",
+        "create_pr_draft",
+        "submit_pr"
+      ],
+      "reply": "PR-2026-0301 is submitted and pending approval.\n\n- **Items:** 10 × Developer laptop 14in (LAP-DEV-14, 32GB RAM, 1TB SSD, 3-yr warranty)\n- **Value:** 65,000 SAR (10 × 6,500 reference price)\n- **Type:** Urgent\n- **Method:** RFQ (3 quotes required, since the value is between 20k and 200k SAR). Preferred vendor: Zawaya Tech Solutions (V-ZAW, rating 4.4).\n- **G/L:** 6110 IT Hardware. Remaining budget is 181,600 SAR, leaving 116,600 SAR after this request.\n- **Approval chain:** Khalid Al-Zahrani (Head of IT) → Lama Al-Subaie (Head of HR, confirms the new hires) → Sara Al-Otaibi (Accountant) → Reem Al-Dosari (CFO)\n- **Validation:** no errors or warnings.\n\nThe draft is marked for new hires, so HR will confirm the headcount. Next step is Khalid's approval. The RFQ with Zawaya and the other registered vendors can start once the PR is approved.",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "pending_approval",
+          "method": "RFQ",
+          "gl": "6110",
+          "value": 65000.0,
+          "chain": [
+            "it_head",
+            "hr_head",
+            "accountant",
+            "cfo"
+          ]
+        }
+      ],
+      "repeat": 1
+    },
+    {
+      "id": "D03",
+      "category": "error_catching",
+      "note": "Filled form with 4 planted mistakes must be caught and corrected (never submitted as given)",
+      "passed": false,
+      "checks": [
+        {
+          "check": "first_draft_errors_min",
+          "ok": false,
+          "detail": "0 error(s) caught on the first draft"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 1,
+      "checks_total": 2,
+      "invalid_submissions": [],
+      "seconds": 21.8,
+      "usage": {
+        "input_tokens": 38575,
+        "output_tokens": 3878
+      },
+      "tools": [
+        "create_pr_draft",
+        "search_catalog",
+        "search_catalog",
+        "get_price_history",
+        "get_price_history",
+        "get_procurement_rules",
+        "check_budget",
+        "check_budget",
+        "update_pr_draft"
+      ],
+      "reply": "I have not submitted PR-2026-0301 yet. Your figures had errors, and submitting them as written would have sent the wrong value, method and G/L into approval.\n\n**What was wrong and what I changed (draft PR-2026-0301):**\n- **Value:** 10 × 6,500 + 2 × 900 = **66,800 SAR**, not 6,500. Changed to 66,800.\n- **Method:** 66,800 falls in the 20,000–200,000 band, so it must be **RFQ (3 quotes)**, not Low Value. Changed to RFQ.\n- **G/L:** the laptops are hardware, **6110**, not 6120 (software). Changed to 6110.\n- **Justification:** \"need laptops\" was too vague. Rewritten to state the need, the items and the impact.\n\n**Still open:** NET-AP6-SUP is coded to **6140** (Maintenance & Support), not 6110. A PR can carry only one G/L account, so the support line needs its own PR, or the whole request is coded to 6110.\n\n**Budget:** 6110 has 181,600 SAR available (116,600 left after the laptops). 6140 has 321,250 SAR available.\n\n**Approval chain:** Khalid Al-Zahrani (Head of IT) → Lama Al-Subaie (Head of HR, confirms the new-hire headcount) → Sara Al-Otaibi (Accountant) → Reem Al-Dosari (CFO).\n\n**Decision needed:** Should I (A) split the support line into a separate PR at 6140 and submit the laptops PR (10 × LAP-DEV-14, 65,000 SAR, RFQ, 6110), or (B) keep everything in PR-2026-0301 at 6110 and submit it as is?",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "draft",
+          "method": "RFQ",
+          "gl": "6110",
+          "value": 66800.0,
+          "chain": []
+        }
+      ],
+      "repeat": 1
+    },
+    {
+      "id": "D04",
+      "category": "error_catching",
+      "note": "Price 35% above last purchase: must ask, not submit",
+      "passed": true,
+      "checks": [
+        {
+          "check": "submitted",
+          "ok": true,
+          "detail": "submitted=False (expected False)"
+        },
+        {
+          "check": "reply_any",
+          "ok": true,
+          "detail": "reply mentions one of ['3,400', '3400', 'above', 'higher', 'last purchase']"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 3,
+      "checks_total": 3,
+      "invalid_submissions": [],
+      "seconds": 10.1,
+      "usage": {
+        "input_tokens": 20175,
+        "output_tokens": 1708
+      },
+      "tools": [
+        "search_catalog",
+        "get_price_history",
+        "check_budget",
+        "get_procurement_rules",
+        "create_pr_draft"
+      ],
+      "reply": "I created draft **PR-2026-0301** but have not submitted it, because the price needs your decision.\n\n- **Items:** 8 × Wi-Fi 6 indoor access point (NET-AP6), G/L 6130 Network & Infrastructure\n- **Value:** 36,800 SAR at 4,600 SAR each\n- **Price check:** the reference price is 3,400 SAR per unit, so your price is about 35% above it (+9,600 SAR total).\n- **Budget:** 137,700 SAR available in 6130; 100,900 SAR left after this order.\n- **Method:** RFQ (3 quotes required). Nukhba (V-NUK, rating 4.6) is set as preferred vendor. Sadeem and Zawaya are also registered for this item.\n- **Approval chain:** Khalid Al-Zahrani (Head of IT) → Sara Al-Otaibi (Accountant) → Nawaf Al-Shehri (Head of Finance)\n\nShould I submit at 4,600 SAR per unit, or update the draft to the reference price of 3,400 SAR (27,200 SAR total)?",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "draft",
+          "method": "RFQ",
+          "gl": "6130",
+          "value": 36800.0,
+          "chain": []
+        }
+      ],
+      "repeat": 1
+    },
+    {
+      "id": "D05",
+      "category": "error_catching",
+      "note": "Support/licenses without the controller they belong to",
+      "passed": false,
+      "checks": [
+        {
+          "check": "if_submitted.lines_include",
+          "ok": false,
+          "detail": "['NET-CTRL-SUP', 'NET-CTRL-LIC'] must include ['NET-CTRL-GW']"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": false,
+          "detail": "1 submitted PR(s) break policy"
+        }
+      ],
+      "checks_passed": 0,
+      "checks_total": 2,
+      "invalid_submissions": [
+        {
+          "pr": "PR-2026-0301",
+          "errors": [
+            "Item 1 (NET-CTRL-SUP) is a support/license item for NET-CTRL-GW, but NET-CTRL-GW is not in this request.",
+            "Item 2 (NET-CTRL-LIC) is a support/license item for NET-CTRL-GW, but NET-CTRL-GW is not in this request."
+          ]
+        }
+      ],
+      "seconds": 15.6,
+      "usage": {
+        "input_tokens": 41318,
+        "output_tokens": 2913
+      },
+      "tools": [
+        "search_catalog",
+        "search_catalog",
+        "get_price_history",
+        "get_price_history",
+        "check_budget",
+        "check_budget",
+        "get_procurement_rules",
+        "create_pr_draft",
+        "update_pr_draft",
+        "submit_pr"
+      ],
+      "reply": "**PR-2026-0301 submitted for approval.**\n\n- **Value:** 19,240 SAR\n  - 3-year support contract (NET-CTRL-SUP): 1 × 2,600 SAR (G/L 6140)\n  - Controller capacity licenses (NET-CTRL-LIC): 32 × 520 SAR (G/L 6130)\n- **Method:** Low Value (one quote, under 20,000 SAR)\n- **Approval chain:** Khalid Al-Zahrani (Head of IT) → Sara Al-Otaibi (Accountant) → Nawaf Al-Shehri (Head of Finance)\n- **Budget:** Both G/L accounts have room. 6130 has 121,060 SAR left after this request and 6140 has 318,650 SAR left.\n- **Checks:** No validation errors or warnings. HR confirmation not needed (no new user seats).\n\n**Notes:**\n- The PR header carries G/L 6130 and the support line is coded to 6140. The justification states this split.\n- I set the preferred vendor to Nukhba Networks (V-NUK), which has the highest rating of the three registered vendors. Tell me if you want a different vendor.\n- The total is 760 SAR below the 20,000 SAR threshold. Any increase in quantity or price would move it to RFQ (3 quotes).\n\n**Next step:** Khalid Al-Zahrani's approval.",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "pending_approval",
+          "method": "Low Value",
+          "gl": "6130",
+          "value": 19240.0,
+          "chain": [
+            "it_head",
+            "accountant",
+            "finance_head"
+          ]
+        }
+      ],
+      "repeat": 1
+    },
+    {
+      "id": "D06",
+      "category": "error_catching",
+      "note": "Over budget: 195,000 vs ~181,600 left in 6110",
+      "passed": true,
+      "checks": [
+        {
+          "check": "submitted",
+          "ok": true,
+          "detail": "submitted=False (expected False)"
+        },
+        {
+          "check": "reply_any",
+          "ok": true,
+          "detail": "reply mentions one of ['budget', '181,600', '181600', 'insufficient']"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 3,
+      "checks_total": 3,
+      "invalid_submissions": [],
+      "seconds": 8.8,
+      "usage": {
+        "input_tokens": 21389,
+        "output_tokens": 1577
+      },
+      "tools": [
+        "search_catalog",
+        "search_catalog",
+        "get_price_history",
+        "check_budget",
+        "get_procurement_rules",
+        "create_pr_draft"
+      ],
+      "reply": "I drafted the PR but have not submitted it, because the IT hardware budget can't cover it.\n\n**PR-2026-0301 (draft): 30 × Developer laptop 14in (LAP-DEV-14), SAR 195,000**\n- **Budget problem:** G/L 6110 (IT Hardware) has SAR 181,600 left. The request is SAR 13,400 over. The draft validation didn't flag this, so I checked it separately.\n- **Method:** RFQ, since the value is between 20k and 200k. Three quotes are required. Four vendors are registered: Zawaya (4.4), Bariq (4.1), Mada'in (3.9), Fanar (3.7).\n- **Approval chain:** Khalid Al-Zahrani (Head of IT) → Lama Al-Subaie (Head of HR, confirms new-hire headcount) → Sara Al-Otaibi (Accountant) → Reem Al-Dosari (CFO).\n- **Price:** SAR 6,500 per unit, the same as the last purchase.\n\n**Decision needed:** How do you want to proceed?\n1. Request a SAR 13,400 budget increase for 6110 and I'll submit as is.\n2. Reduce the quantity to 28 (SAR 182,000), which fits the remaining budget. Or I can check whether the standard laptop (LAP-STD-14, SAR 4,200) suits some of the roles.",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "draft",
+          "method": "RFQ",
+          "gl": "6110",
+          "value": 195000.0,
+          "chain": []
+        }
+      ],
+      "repeat": 1
+    },
+    {
+      "id": "D07",
+      "category": "error_catching",
+      "note": "False sole-source claim: 2 vendors sell M365",
+      "passed": true,
+      "checks": [
+        {
+          "check": "not_method",
+          "ok": true,
+          "detail": "no submitted PR may use Sole Source"
+        },
+        {
+          "check": "if_submitted.method",
+          "ok": true,
+          "detail": "RFQ (expected RFQ)"
+        },
+        {
+          "check": "if_submitted.gl",
+          "ok": true,
+          "detail": "6120 (expected 6120)"
+        },
+        {
+          "check": "if_submitted.value",
+          "ok": true,
+          "detail": "29,000 (expected 29,000)"
+        },
+        {
+          "check": "if_submitted.chain_includes",
+          "ok": true,
+          "detail": "['it_head', 'hr_head', 'accountant', 'finance_head'] must include ['hr_head']"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 6,
+      "checks_total": 6,
+      "invalid_submissions": [],
+      "seconds": 11.5,
+      "usage": {
+        "input_tokens": 34512,
+        "output_tokens": 1890
+      },
+      "tools": [
+        "search_catalog",
+        "get_price_history",
+        "get_price_history",
+        "check_budget",
+        "get_procurement_rules",
+        "get_procurement_rules",
+        "create_pr_draft",
+        "submit_pr"
+      ],
+      "reply": "**PR-2026-0301 submitted for approval**\n\n- **Item:** Microsoft 365 E3 annual, per user (LIC-M365-E3) × 20 at SAR 1,450 = **SAR 29,000**\n- **G/L:** 6120 Software Licenses. Budget left after this request: SAR 109,100 of 138,100.\n- **Method:** **RFQ (3 quotes), not sole source.** The company data lists two registered vendors, Sadeem Digital (rating 4.2) and Mada'in Systems (3.9), and the item is not flagged sole source. I did not use the sole source claim. If you have evidence that only Mada'in can supply this, send it and I'll revise the method.\n- **Approval chain:** Khalid Al-Zahrani (Head of IT) → Lama Al-Subaie (Head of HR, confirms the 20 new headcount) → Sara Al-Otaibi (Accountant) → Nawaf Al-Shehri (Head of Finance, since the value is under SAR 40k)\n- **Next step:** The RFQ needs three quotes, including Mada'in Systems and Sadeem Digital, before a vendor is selected. Khalid Al-Zahrani's approval is the first step.",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "pending_approval",
+          "method": "RFQ",
+          "gl": "6120",
+          "value": 29000.0,
+          "chain": [
+            "it_head",
+            "hr_head",
+            "accountant",
+            "finance_head"
+          ]
+        }
+      ],
+      "repeat": 1
+    },
+    {
+      "id": "D08",
+      "category": "clarification",
+      "note": "Too vague: must ask, create nothing",
+      "passed": true,
+      "checks": [
+        {
+          "check": "submitted",
+          "ok": true,
+          "detail": "submitted=False (expected False)"
+        },
+        {
+          "check": "max_prs",
+          "ok": true,
+          "detail": "0 PR(s) created (max 0)"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 3,
+      "checks_total": 3,
+      "invalid_submissions": [],
+      "seconds": 2.9,
+      "usage": {
+        "input_tokens": 4143,
+        "output_tokens": 261
+      },
+      "tools": [],
+      "reply": "I can set this up, but I need a few details first:\n\n1. **What items do you need?** (e.g., chairs, desks, printer paper, toner, cabinets)\n2. **Quantities** for each item.\n3. **Which department** is it for (IT, Admin, HR, Marketing, or Finance)? Furniture and supplies are charged to the Admin accounts.\n4. **Is it urgent**, and is there a deadline?\n\nOnce I have these, I'll find the catalog items and prices, check the budget, and draft the purchase request.",
+      "prs": [],
+      "repeat": 1
+    },
+    {
+      "id": "D09",
+      "category": "language",
+      "note": "Arabic, urgent, CFO tier",
+      "passed": true,
+      "checks": [
+        {
+          "check": "submitted",
+          "ok": true,
+          "detail": "submitted=True (expected True)"
+        },
+        {
+          "check": "method",
+          "ok": true,
+          "detail": "RFQ (expected RFQ)"
+        },
+        {
+          "check": "value",
+          "ok": true,
+          "detail": "43,500 (expected 43,500)"
+        },
+        {
+          "check": "doc_type",
+          "ok": true,
+          "detail": "Urgent (expected Urgent)"
+        },
+        {
+          "check": "chain_includes",
+          "ok": true,
+          "detail": "['it_head', 'accountant', 'cfo'] must include ['cfo']"
+        },
+        {
+          "check": "reply_arabic",
+          "ok": true,
+          "detail": "Arabic share of letters 92%"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 7,
+      "checks_total": 7,
+      "invalid_submissions": [],
+      "seconds": 10.4,
+      "usage": {
+        "input_tokens": 27268,
+        "output_tokens": 1476
+      },
+      "tools": [
+        "search_catalog",
+        "search_catalog",
+        "get_price_history",
+        "check_budget",
+        "get_procurement_rules",
+        "create_pr_draft",
+        "submit_pr"
+      ],
+      "reply": "تم تقديم طلب الشراء العاجل وهو الآن في سلسلة الاعتماد.\n\n- **رقم الطلب:** PR-2026-0301\n- **الوصف:** 3 طابعات A3 متعددة الوظائف لفرع جدة (PRN-A3-MFP)\n- **القيمة:** 43,500 ريال (3 × 14,500)\n- **الحساب:** 6110 Hardware. الميزانية المتبقية بعد الطلب: 138,100 ريال\n- **طريقة الشراء:** RFQ، تتطلب 3 عروض أسعار (لا تحتاج مناقصة)\n- **سلسلة الاعتماد:** خالد الزهراني (رئيس تقنية المعلومات) ← سارة العتيبي (المحاسبة) ← ريم الدوسري (المدير المالي)\n- **الحالة:** pending_approval\n\n**ملاحظات:**\n- الطلب مصنّف \"عاجل\" (Urgent).\n- لم يتطلب الطلب اعتماد الموارد البشرية لأنه لا يضيف رخص أو مقاعد جديدة للموظفين.\n- لم أجد مركز تكلفة لفرع جدة في النظام، لذلك لم أحدده. إذا كان لديك رقم مركز التكلفة، أرسله وأضيفه.\n\n**الخطوة التالية:** يحتاج خالد الزهراني إلى اعتماد الطلب، وسيتم الحصول على 3 عروض أسعار من الموردين.",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "pending_approval",
+          "method": "RFQ",
+          "gl": "6110",
+          "value": 43500.0,
+          "chain": [
+            "it_head",
+            "accountant",
+            "cfo"
+          ]
+        }
+      ],
+      "repeat": 1
+    },
+    {
+      "id": "D10",
+      "category": "standard",
+      "note": "Furniture charged to Admin furniture account",
+      "passed": true,
+      "checks": [
+        {
+          "check": "submitted",
+          "ok": true,
+          "detail": "submitted=True (expected True)"
+        },
+        {
+          "check": "method",
+          "ok": true,
+          "detail": "Low Value (expected Low Value)"
+        },
+        {
+          "check": "gl",
+          "ok": true,
+          "detail": "6320 (expected 6320)"
+        },
+        {
+          "check": "value",
+          "ok": true,
+          "detail": "16,500 (expected 16,500)"
+        },
+        {
+          "check": "chain",
+          "ok": true,
+          "detail": "['it_head', 'accountant', 'finance_head'] (expected ['it_head', 'accountant', 'finance_head'])"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 6,
+      "checks_total": 6,
+      "invalid_submissions": [],
+      "seconds": 11.9,
+      "usage": {
+        "input_tokens": 29464,
+        "output_tokens": 1687
+      },
+      "tools": [
+        "search_catalog",
+        "search_catalog",
+        "get_price_history",
+        "get_price_history",
+        "check_budget",
+        "get_procurement_rules",
+        "create_pr_draft",
+        "submit_pr"
+      ],
+      "reply": "**PR-2026-0301 submitted for approval.**\n\n- **Items:** 5 × Office desk 160cm with cable tray (FUR-DESK-160) at 1,450 SAR; 5 × Ergonomic office chair (FUR-CHAIR-ERG) at 1,850 SAR\n- **Total:** 16,500 SAR\n- **G/L:** 6320 Office Furniture (161,600 SAR available; 145,100 SAR left after this request)\n- **Method:** Low Value (single quote, under 20,000 SAR)\n- **Preferred vendor:** Rukn Office Furniture (V-RKN), rated 4.3, at the last purchase price\n- **Approval chain:** Khalid Al-Zahrani (Head of IT) → Sara Al-Otaibi (Accountant) → Nawaf Al-Shehri (Head of Finance)\n- **Validation:** no errors or warnings. HR confirmation was not required because this is not for new hires or new seats.\n\nNext step: the chain now approves it. Let me know if you want a different vendor or a sit-stand desk (3,200 SAR) instead.",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "pending_approval",
+          "method": "Low Value",
+          "gl": "6320",
+          "value": 16500.0,
+          "chain": [
+            "it_head",
+            "accountant",
+            "finance_head"
+          ]
+        }
+      ],
+      "repeat": 1
+    },
+    {
+      "id": "D11",
+      "category": "policy",
+      "note": "Bloomberg: sole source, HR headcount, CEO tier",
+      "passed": true,
+      "checks": [
+        {
+          "check": "submitted",
+          "ok": true,
+          "detail": "submitted=True (expected True)"
+        },
+        {
+          "check": "method",
+          "ok": true,
+          "detail": "Sole Source (expected Sole Source)"
+        },
+        {
+          "check": "gl",
+          "ok": true,
+          "detail": "6510 (expected 6510)"
+        },
+        {
+          "check": "value",
+          "ok": true,
+          "detail": "210,000 (expected 210,000)"
+        },
+        {
+          "check": "chain",
+          "ok": true,
+          "detail": "['finance_head', 'hr_head', 'accountant', 'cfo', 'ceo'] (expected ['finance_head', 'hr_head', 'accountant', 'cfo', 'ceo'])"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 6,
+      "checks_total": 6,
+      "invalid_submissions": [],
+      "seconds": 9.1,
+      "usage": {
+        "input_tokens": 27029,
+        "output_tokens": 1539
+      },
+      "tools": [
+        "search_catalog",
+        "get_price_history",
+        "check_budget",
+        "get_procurement_rules",
+        "create_pr_draft",
+        "submit_pr"
+      ],
+      "reply": "**PR-2026-0301 submitted**\n\n- **Item:** Bloomberg Terminal subscription, annual, per user × 2 (MD-BBG-TERM)\n- **Value:** 210,000 SAR (2 × 105,000)\n- **G/L:** 6510 Market Data Subscriptions (Finance)\n- **Budget:** 335,000 SAR available, 125,000 SAR left after this request\n- **Method:** Sole Source. Bloomberg (V-BBG) is the only registered vendor, so no bidding is required.\n- **Approval chain:** Nawaf Al-Shehri (Head of Finance) → Lama Al-Subaie (Head of HR, confirms the 2 new seats) → Sara Al-Otaibi (Accountant) → Reem Al-Dosari (CFO) → Turki Al-Mutairi (CEO)\n- **Validation:** 0 errors, 0 warnings.\n\n**Next step:** Nawaf Al-Shehri to approve, and HR to confirm the headcount. The request is for Finance, so it goes through the Finance head first.",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "pending_approval",
+          "method": "Sole Source",
+          "gl": "6510",
+          "value": 210000.0,
+          "chain": [
+            "finance_head",
+            "hr_head",
+            "accountant",
+            "cfo",
+            "ceo"
+          ]
+        }
+      ],
+      "repeat": 1
+    },
+    {
+      "id": "D12",
+      "category": "policy",
+      "note": "Manager phone under STC framework",
+      "passed": true,
+      "checks": [
+        {
+          "check": "submitted",
+          "ok": true,
+          "detail": "submitted=True (expected True)"
+        },
+        {
+          "check": "method",
+          "ok": true,
+          "detail": "Framework Agreement (expected Framework Agreement)"
+        },
+        {
+          "check": "gl",
+          "ok": true,
+          "detail": "6150 (expected 6150)"
+        },
+        {
+          "check": "value",
+          "ok": true,
+          "detail": "10,600 (expected 10,600)"
+        },
+        {
+          "check": "chain",
+          "ok": true,
+          "detail": "['hr_head', 'marketing_head', 'it_head'] (expected ['hr_head', 'marketing_head', 'it_head'])"
+        },
+        {
+          "check": "lines",
+          "ok": true,
+          "detail": "{'MOB-IPH-PRO': 1.0, 'PKG-MGR': 12.0} (expected {'MOB-IPH-PRO': 1, 'PKG-MGR': 12})"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 7,
+      "checks_total": 7,
+      "invalid_submissions": [],
+      "seconds": 9.0,
+      "usage": {
+        "input_tokens": 20732,
+        "output_tokens": 1270
+      },
+      "tools": [
+        "check_mobile_eligibility",
+        "create_pr_draft",
+        "submit_pr"
+      ],
+      "reply": "Abeer Al-Juhani's phone and line are submitted as PR-2026-0301.\n\n- **Value:** 10,600 SAR\n  - iPhone Pro (manager device): 5,200 SAR\n  - STC Business Unlimited with unlimited international roaming: 450 SAR/month × 12 months = 5,400 SAR\n- **G/L:** 6150\n- **Method:** Framework Agreement (FA-STC-2026), vendor V-STC\n- **Entitlement:** She is a manager, so the iPhone Pro and unlimited roaming package are the correct grade entitlement. She has no existing line.\n- **Approval chain:** Lama Al-Subaie (Head of HR) → Yousef Al-Shammari (Head of Marketing) → Khalid Al-Zahrani (Head of IT)\n- **Validation:** no errors or warnings. I flagged it as a new-hire request so HR confirms headcount.\n\nNext step: the approvers need to sign off before the start date on 2 November.",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "pending_approval",
+          "method": "Framework Agreement",
+          "gl": "6150",
+          "value": 10600.0,
+          "chain": [
+            "hr_head",
+            "marketing_head",
+            "it_head"
+          ]
+        }
+      ],
+      "repeat": 1
+    },
+    {
+      "id": "D13",
+      "category": "policy",
+      "note": "Above-grade request and existing line: must refuse",
+      "passed": true,
+      "checks": [
+        {
+          "check": "submitted",
+          "ok": true,
+          "detail": "submitted=False (expected False)"
+        },
+        {
+          "check": "reply_any",
+          "ok": true,
+          "detail": "reply mentions one of ['already', 'existing', '0550 114 208', 'staff']"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 3,
+      "checks_total": 3,
+      "invalid_submissions": [],
+      "seconds": 3.5,
+      "usage": {
+        "input_tokens": 8782,
+        "output_tokens": 494
+      },
+      "tools": [
+        "check_mobile_eligibility"
+      ],
+      "reply": "Rakan Al-Shahrani (E-1009, Marketing, staff grade) is not entitled to an iPhone Pro with unlimited roaming. Staff get:\n\n- **Device:** iPhone (MOB-IPH), SAR 3,700\n- **Package:** STC Business Unlimited, no unlimited roaming (PKG-STAFF), SAR 300/month × 12 months = SAR 3,600\n- **Total:** SAR 7,300, G/L 6150, Framework Agreement FA-STC-2026 with V-STC\n- **Approval chain:** Head of HR (eligibility) → Marketing department head → Head of IT\n\nHe already has an active line (0550 114 208, PKG-STAFF). Should I create the request with the entitled iPhone and package, or do you want a different option?",
+      "prs": [],
+      "repeat": 1
+    },
+    {
+      "id": "D14",
+      "category": "proactive",
+      "note": "Scheduled scan: Adobe renewal + cancel 2 leavers' lines",
+      "passed": true,
+      "checks": [
+        {
+          "check": "renewal_ids",
+          "ok": true,
+          "detail": "renewal PRs submitted: ['RN-01']"
+        },
+        {
+          "check": "lines_cancel_requested",
+          "ok": true,
+          "detail": "cancellation requested: ['0550 114 209', '0550 114 210']"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 3,
+      "checks_total": 3,
+      "invalid_submissions": [],
+      "seconds": 15.7,
+      "usage": {
+        "input_tokens": 32374,
+        "output_tokens": 2968
+      },
+      "tools": [
+        "list_renewals_due",
+        "list_mobile_lines",
+        "get_price_history",
+        "get_procurement_rules",
+        "check_budget",
+        "get_procurement_rules",
+        "create_pr_draft",
+        "submit_pr",
+        "request_line_cancellation",
+        "request_line_cancellation"
+      ],
+      "reply": "Scan complete. Two items needed action, and both are handled.\n\n**1. Renewals due within 30 days: one found**\n\n- **PR-2026-0301, Adobe Creative Cloud (LIC-ADOBE-CC), 12 users, design & marketing team (IT)**\n  - Expires 2026-11-20, 21 days left, so doc type is **Urgent**.\n  - Quote is 3,250 SAR per user versus 3,100 last year. That is +4.8%, or 6,000 SAR total. This is not a large jump, so I did not recommend negotiating on price alone, but comparing quotes is still worthwhile.\n  - Total value: **39,000 SAR** (GL 6120, Software Licenses & Digital Services).\n  - Budget: 138,100 SAR available, 99,100 SAR left after this request.\n  - Method: **RFQ**, 3 quotes required. The item is **not** sole source. The catalog lists two registered vendors, Sadeem Digital (V-SDM, incumbent, rating 4.2) and Mada'in Systems (V-MAD, rating 3.9). I set V-SDM as the preferred vendor.\n  - Approval chain: Khalid Al-Zahrani (Head of IT) → Sara Al-Otaibi (Accountant) → Nawaf Al-Shehri (Head of Finance). The amount is under 40k, so Finance Head approval applies.\n  - Status: validated with no errors or warnings, and **submitted**, now pending approval.\n  - Note: the RFQ still needs three quotes gathered, including one from V-MAD, before award. Because the expiry is 21 days out, the quotes should be collected quickly.\n  - I made a mistake during the process. My first rules check passed sole_source=true, which returned a \"Sole Source\" result. That was wrong, and I did not use it. The draft was created with the correct RFQ method, based on the price history and a corrected rules check.\n\n**2. Phone lines for departed employees: two found, cancellation requested**\n\n| Line | Employee | Left | Package | Monthly saving |\n|---|---|---|---|---|\n| 0550 114 209 | Bandar Al-Rashid | 2026-06-28 | PKG-STAFF | 300 SAR |\n| 0550 114 210 | Hessa Al-Qurashi | 2026-08-20 | PKG-MGR | 450 SAR |\n\nIT has been asked to cancel both. Total saving is **750 SAR per month, 9,000 SAR per year**. Both lines have been billing since the employees left, so the cancellations are overdue. The ask is for IT to confirm, and I have not verified that the carrier has stopped billing.",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "pending_approval",
+          "method": "RFQ",
+          "gl": "6120",
+          "value": 39000.0,
+          "chain": [
+            "it_head",
+            "accountant",
+            "finance_head"
+          ]
+        }
+      ],
+      "repeat": 1
+    },
+    {
+      "id": "D15",
+      "category": "audit",
+      "note": "Auditor question answered from records",
+      "passed": true,
+      "checks": [
+        {
+          "check": "reply_all",
+          "ok": true,
+          "detail": "all mentioned"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 2,
+      "checks_total": 2,
+      "invalid_submissions": [],
+      "seconds": 8.8,
+      "usage": {
+        "input_tokens": 4314,
+        "output_tokens": 1704
+      },
+      "tools": [
+        "run_compliance_checks"
+      ],
+      "reply": "**Six purchases broke procurement policy this year.** Two further high-severity findings are STC lines still billing for former employees, which is a separate control issue. The compliance run covers all purchases and doesn't filter by date, so I've treated the PR-2026 series as this year's purchases.\n\n**Purchases with policy breaches (8 findings across 6 PRs):**\n\n1. **PR-2026-0204, Data center UPS batteries, 212,000 SAR (high)**\n   - Recorded as RFQ, but amounts of 200,000 SAR or more require Competitive Bidding.\n   - Approval gap: Turki Al-Mutairi (CEO) has not approved. Policy requires CFO and CEO above 200k.\n\n2. **PR-2026-0133, Core switch replacement, 118,000 SAR (high)**\n   - Approval gap: Reem Al-Dosari (CFO) has not approved. Finance Head approved instead. Policy requires CFO approval for 40k–200k.\n\n3. **PR-2026-0148, Microsoft 365 true-up, 29,000 SAR (high)**\n   - Recorded as Low Value, but 20k–200k requires RFQ.\n   - Only 1 quotation on file; 3 required.\n\n4. **PR-2026-0177, LEAP exhibition booth, 46,500 SAR (high)**\n   - Only 2 quotations on file; 3 required for RFQ (20k–200k).\n\n5. **PR-2026-0127, Meeting room AV upgrade, 55,200 SAR (high)**\n   - Only 1 quotation on file; 3 required for RFQ (20k–200k).\n\n6. **PR-2026-0166, Backup storage expansion, 74,000 SAR (medium)**\n   - Missing document: invoice. The method and approvals were not flagged.\n\n**Related high-severity findings (not procurement method, but billing control failures):**\n- **STC line 0550 114 209** (Bandar Al-Rashid, Sales Executive): still active about 4 months after leaving on 2026-06-28. About 1,200 SAR billed for nobody.\n- **STC line 0550 114 210** (Hessa Al-Qurashi, Finance Manager): still active about 2 months after leaving on 2026-08-20. About 900 SAR billed for nobody.\n\nI can pull the audit trail for any of the six PRs to see who approved what and when, or check the STC lines' current status.",
+      "prs": [],
+      "repeat": 1
+    },
+    {
+      "id": "D16",
+      "category": "standard",
+      "note": "Never-bought item: NEW- code with estimate",
+      "passed": true,
+      "checks": [
+        {
+          "check": "submitted",
+          "ok": true,
+          "detail": "submitted=True (expected True)"
+        },
+        {
+          "check": "gl",
+          "ok": true,
+          "detail": "6420 (expected 6420)"
+        },
+        {
+          "check": "chain_includes",
+          "ok": true,
+          "detail": "['marketing_head', 'accountant', 'finance_head'] must include ['marketing_head']"
+        },
+        {
+          "check": "new_item",
+          "ok": true,
+          "detail": "['NEW-PODCAST-MIC-KIT'] should contain a NEW- item"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 5,
+      "checks_total": 5,
+      "invalid_submissions": [],
+      "seconds": 11.0,
+      "usage": {
+        "input_tokens": 38012,
+        "output_tokens": 1655
+      },
+      "tools": [
+        "search_catalog",
+        "search_catalog",
+        "search_catalog",
+        "search_catalog",
+        "search_catalog",
+        "check_budget",
+        "get_procurement_rules",
+        "create_pr_draft",
+        "submit_pr"
+      ],
+      "reply": "PR-2026-0301 is submitted and pending approval.\n\n- **Item:** 2 podcast microphone kits (not in the catalog, so coded NEW-PODCAST-MIC-KIT; procurement will source it)\n- **Estimate:** 1,100 SAR per kit, **2,200 SAR total**\n- **G/L:** 6420 Printing & Branding (Marketing). 66,400 SAR remains after this request.\n- **Method:** Low Value (one quote)\n- **Approval chain:** Yousef Al-Shammari (Head of Marketing) → Sara Al-Otaibi (Accountant) → Nawaf Al-Shehri (Head of Finance)\n- **HR confirmation:** not needed\n\nI charged this to Marketing's budget, not IT's, since the kits are for the podcast. The price is my market estimate, so procurement will confirm the actual cost when they source it.",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "pending_approval",
+          "method": "Low Value",
+          "gl": "6420",
+          "value": 2200.0,
+          "chain": [
+            "marketing_head",
+            "accountant",
+            "finance_head"
+          ]
+        }
+      ],
+      "repeat": 1
+    }
+  ]
+}

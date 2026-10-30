@@ -1,0 +1,241 @@
+{
+  "summary": {
+    "timestamp": "2026-10-30 17:40",
+    "set": "dev",
+    "model": "claude-haiku-5-5",
+    "ablation": "none",
+    "label": "fix: don't re-confirm verified sole source",
+    "repeat": 3,
+    "cases": 3,
+    "passed": 3,
+    "pass_rate": 100.0,
+    "check_rate": 100.0,
+    "invalid_submissions": 0,
+    "avg_seconds": 10.9,
+    "input_tokens": 87465,
+    "output_tokens": 4783,
+    "by_category": {
+      "policy": "3/3"
+    }
+  },
+  "results": [
+    {
+      "id": "D11",
+      "category": "policy",
+      "note": "Bloomberg: sole source, HR headcount, CEO tier",
+      "passed": true,
+      "checks": [
+        {
+          "check": "submitted",
+          "ok": true,
+          "detail": "submitted=True (expected True)"
+        },
+        {
+          "check": "method",
+          "ok": true,
+          "detail": "Sole Source (expected Sole Source)"
+        },
+        {
+          "check": "gl",
+          "ok": true,
+          "detail": "6510 (expected 6510)"
+        },
+        {
+          "check": "value",
+          "ok": true,
+          "detail": "210,000 (expected 210,000)"
+        },
+        {
+          "check": "chain",
+          "ok": true,
+          "detail": "['finance_head', 'hr_head', 'accountant', 'cfo', 'ceo'] (expected ['finance_head', 'hr_head', 'accountant', 'cfo', 'ceo'])"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 6,
+      "checks_total": 6,
+      "invalid_submissions": [],
+      "seconds": 13.1,
+      "usage": {
+        "input_tokens": 27747,
+        "output_tokens": 1643
+      },
+      "tools": [
+        "search_catalog",
+        "get_price_history",
+        "get_price_history",
+        "check_budget",
+        "get_procurement_rules",
+        "create_pr_draft",
+        "submit_pr"
+      ],
+      "reply": "**PR-2026-0301 submitted for approval**\n\n- **Item:** Bloomberg Terminal subscription, annual, per user (MD-BBG-TERM) × 2 seats\n- **Value:** 210,000 SAR (2 × 105,000)\n- **G/L:** 6510 Market Data Subscriptions (Finance). Budget left after this request: 125,000 SAR of 335,000 available.\n- **Method:** Sole Source. Bloomberg (V-BBG) is the only registered vendor, so no bidding is needed.\n- **Approval chain:** Nawaf Al-Shehri (Head of Finance) → Lama Al-Subaie (Head of HR, confirms the 2 new headcount) → Sara Al-Otaibi (Accountant) → Reem Al-Dosari (CFO) → Turki Al-Mutairi (CEO). The CEO sign-off is required because the value is over 200,000.\n- **Validation:** no errors or warnings. The draft is for the Finance department, so it was not routed through IT.\n\n**Next step:** HR needs to confirm the headcount for the two analysts. Approvals then follow the chain above.",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "pending_approval",
+          "method": "Sole Source",
+          "gl": "6510",
+          "value": 210000.0,
+          "chain": [
+            "finance_head",
+            "hr_head",
+            "accountant",
+            "cfo",
+            "ceo"
+          ]
+        }
+      ],
+      "repeat": 1
+    },
+    {
+      "id": "D11",
+      "category": "policy",
+      "note": "Bloomberg: sole source, HR headcount, CEO tier",
+      "passed": true,
+      "checks": [
+        {
+          "check": "submitted",
+          "ok": true,
+          "detail": "submitted=True (expected True)"
+        },
+        {
+          "check": "method",
+          "ok": true,
+          "detail": "Sole Source (expected Sole Source)"
+        },
+        {
+          "check": "gl",
+          "ok": true,
+          "detail": "6510 (expected 6510)"
+        },
+        {
+          "check": "value",
+          "ok": true,
+          "detail": "210,000 (expected 210,000)"
+        },
+        {
+          "check": "chain",
+          "ok": true,
+          "detail": "['finance_head', 'hr_head', 'accountant', 'cfo', 'ceo'] (expected ['finance_head', 'hr_head', 'accountant', 'cfo', 'ceo'])"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 6,
+      "checks_total": 6,
+      "invalid_submissions": [],
+      "seconds": 10.1,
+      "usage": {
+        "input_tokens": 27709,
+        "output_tokens": 1677
+      },
+      "tools": [
+        "search_catalog",
+        "get_price_history",
+        "get_price_history",
+        "check_budget",
+        "get_procurement_rules",
+        "create_pr_draft",
+        "submit_pr"
+      ],
+      "reply": "**PR-2026-0301 submitted for approval**\n\n- **Item:** Bloomberg Terminal subscription, annual, per user (MD-BBG-TERM), 2 seats at 105,000 SAR each\n- **Value:** 210,000 SAR\n- **G/L:** 6510 Market Data Subscriptions (Finance). Budget: 335,000 SAR available, 125,000 SAR left after this request.\n- **Method:** Sole Source. Bloomberg (V-BBG) is the only registered vendor, so no bidding is required.\n- **Approval chain:**\n  1. Nawaf Al-Shehri, Head of Finance\n  2. Lama Al-Subaie, Head of HR (confirms the 2 new headcount, since this adds new per-user seats for new hires)\n  3. Sara Al-Otaibi, Accountant\n  4. Reem Al-Dosari, CFO\n  5. Turki Al-Mutairi, CEO (required above 200,000 SAR)\n- **Validation:** no errors or warnings.\n\n**Next step:** Nawaf Al-Shehri and Lama Al-Subaie need to approve. Their approval should happen before December so the seats are ready for the analysts' start date.",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "pending_approval",
+          "method": "Sole Source",
+          "gl": "6510",
+          "value": 210000.0,
+          "chain": [
+            "finance_head",
+            "hr_head",
+            "accountant",
+            "cfo",
+            "ceo"
+          ]
+        }
+      ],
+      "repeat": 2
+    },
+    {
+      "id": "D11",
+      "category": "policy",
+      "note": "Bloomberg: sole source, HR headcount, CEO tier",
+      "passed": true,
+      "checks": [
+        {
+          "check": "submitted",
+          "ok": true,
+          "detail": "submitted=True (expected True)"
+        },
+        {
+          "check": "method",
+          "ok": true,
+          "detail": "Sole Source (expected Sole Source)"
+        },
+        {
+          "check": "gl",
+          "ok": true,
+          "detail": "6510 (expected 6510)"
+        },
+        {
+          "check": "value",
+          "ok": true,
+          "detail": "210,000 (expected 210,000)"
+        },
+        {
+          "check": "chain",
+          "ok": true,
+          "detail": "['finance_head', 'hr_head', 'accountant', 'cfo', 'ceo'] (expected ['finance_head', 'hr_head', 'accountant', 'cfo', 'ceo'])"
+        },
+        {
+          "check": "no_invalid_submission",
+          "ok": true,
+          "detail": "all submitted PRs valid"
+        }
+      ],
+      "checks_passed": 6,
+      "checks_total": 6,
+      "invalid_submissions": [],
+      "seconds": 9.6,
+      "usage": {
+        "input_tokens": 32009,
+        "output_tokens": 1463
+      },
+      "tools": [
+        "search_catalog",
+        "get_price_history",
+        "get_procurement_rules",
+        "check_budget",
+        "create_pr_draft",
+        "submit_pr"
+      ],
+      "reply": "**PR-2026-0301 submitted** for approval.\n\n- **Item:** Bloomberg Terminal subscription, annual, per user × 2 seats (MD-BBG-TERM)\n- **Value:** 210,000 SAR (2 × 105,000)\n- **G/L:** 6510 Market Data Subscriptions (Finance). Budget OK: 335,000 SAR available, 125,000 SAR left after this request.\n- **Method:** Sole Source. Bloomberg (V-BBG) is the only registered vendor, so no bidding is needed.\n- **Approval chain:** Finance Head (Nawaf Al-Shehri) → HR Head (Lama Al-Subaie, confirms the 2 new headcount) → Accountant (Sara Al-Otaibi) → CFO (Reem Al-Dosari) → CEO (Turki Al-Mutairi)\n- **Validation:** 0 errors, 0 warnings.\n\n**Next step:** Finance Head and HR need to approve. Because the value is above 200,000 SAR, the CEO must also approve.",
+      "prs": [
+        {
+          "id": "PR-2026-0301",
+          "status": "pending_approval",
+          "method": "Sole Source",
+          "gl": "6510",
+          "value": 210000.0,
+          "chain": [
+            "finance_head",
+            "hr_head",
+            "accountant",
+            "cfo",
+            "ceo"
+          ]
+        }
+      ],
+      "repeat": 3
+    }
+  ]
+}
