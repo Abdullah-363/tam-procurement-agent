@@ -5,3 +5,5 @@ timestamp,set,model,ablation,label,cases,passed,pass_rate,check_rate,invalid_sub
 2026-10-30 17:51,heldout,claude-haiku-5-5,none,first held-out run (no tuning),16,15,93.8,97.4,0,9.5,422424,20899,20261030-175101_heldout_claude-haiku-5-5_none
 2026-10-30 17:59,dev,claude-haiku-5-5,no_validation,ablation: rules layer off,16,14,87.5,95.8,1,10.8,408451,27692,20261030-175904_dev_claude-haiku-5-5_no_validation
 2026-10-30 18:02,dev,claude-haiku-5-5,no_grounding,ablation: lookup tools off,16,8,50.0,71.7,0,8.2,144494,22185,20261030-180220_dev_claude-haiku-5-5_no_grounding
+2026-10-30 19:18,heldout,claude-haiku-5-5,none,consistency: held-out x3,48,45,93.8,97.9,0,9.2,1320236,61530,20261030-191840_heldout_claude-haiku-5-5_none
+2026-10-30 19:22,heldout,claude-sonnet-5-5,none,model comparison: Sonnet,16,16,100.0,100.0,0,12.8,419507,19693,20261030-192216_heldout_claude-sonnet-5-5_none

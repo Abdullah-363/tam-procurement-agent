@@ -1,5 +1,7 @@
 # Tam (تمّ): an autonomous procurement agent
 
+[![tests](https://github.com/Abdullah-363/tam-procurement-agent/actions/workflows/tests.yml/badge.svg)](https://github.com/Abdullah-363/tam-procurement-agent/actions/workflows/tests.yml)
+
 **HUMAIN AI Hackathon · Challenge 3: Autonomous Enterprise**
 
 Tam takes ownership of a company's purchase requests from the employee's first message to procurement's inbox.
@@ -17,8 +19,10 @@ Humans only decide.
 |---|---|
 | Regression tests (36, offline) | 36/36 |
 | Dev set (16 cases), after one fix | 16/16 |
-| **Held-out set (16 unseen cases), first and only run** | **15/16 (93.8%)** |
-| Policy-breaking requests reaching approvers (all normal runs) | **0** |
+| **Held-out set (16 unseen cases), first run** | **15/16 (93.8%)** |
+| Held-out repeated 3 times (consistency) | 45/48: same single case each time |
+| Held-out with `claude-sonnet-5-5` | 16/16 (100%), ~40% slower |
+| Policy-breaking requests reaching approvers (all normal runs, both models) | **0** |
 | Ablation, deterministic rules layer off | 1 policy-breaking request got through |
 | Ablation, lookup tools off | pass rate falls to 50% |
 | Cost | ~0.4 US cents per request (`claude-haiku-5-5`) |
