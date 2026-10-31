@@ -4,6 +4,8 @@
 
 **HUMAIN AI Hackathon · Challenge 3: Autonomous Enterprise**
 
+**Demo video (3 min):** [watch on Google Drive](https://drive.google.com/file/d/1rKURaxxrdnG0LHMPUDuloXDzrwF0NHS7/view?usp=drive_link)
+
 Tam takes ownership of a company's purchase requests, from the first message of a department head or authorized
 staff member to procurement's inbox.
 It drafts the request from plain Arabic or English, checks it against budget and policy **before anyone signs**,
