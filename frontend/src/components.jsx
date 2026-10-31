@@ -153,20 +153,24 @@ export function EditableText({ value, onSave, canEdit = true, label = 'Edit', cl
   )
 }
 
-// Tam logo: an open ring around a filled disc, with تم in the centre.
-// mono: single colour (used inside the green approval stamp).
+// Tam logo: a faceted gem, designed for the project. Colours come from CSS variables so it
+// works on the dark rail and in dark mode. mono: single colour (used inside the green approval stamp).
 export function Logo({ size = 40, title, mono = false }) {
-  const ring = mono ? 'currentColor' : 'var(--logo-ring)'
-  const disc = mono ? 'currentColor' : 'var(--logo-disc)'
-  const text = mono ? 'var(--surface)' : '#ffffff'
+  const f = mono ? ['currentColor', 'currentColor', 'currentColor'] : ['#088ecd', '#4787bc', '#4c616d']
+  const op = mono ? [0.9, 0.6, 0.35] : [1, 1, 1]
+  const ink = mono ? 'currentColor' : 'var(--logo-ink)'
   return (
-    <svg width={size} height={size} viewBox="0 0 100 100" role={title ? 'img' : undefined}
+    <svg width={size} height={size} viewBox="602 600 3100 3100" role={title ? 'img' : undefined}
       aria-label={title} aria-hidden={title ? undefined : true}>
-      {/* open ring: a 300° arc with the gap at the top right */}
-      <path d="M 76.5 16.1 A 43 43 0 1 0 91.5 38.9" fill="none" stroke={ring} strokeWidth="11" strokeLinecap="butt" />
-      <circle cx="50" cy="50" r="29" fill={disc} />
-      <text x="50" y="45" textAnchor="middle" dominantBaseline="central" fill={text}
-        fontFamily="'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, Arial, sans-serif" fontWeight="700" fontSize="36">تم</text>
+      <path fill={f[0]} fillOpacity={op[0]} d="M2152,672l496,1088-1296,624,800-1712Z" />
+      <path fill={f[1]} fillOpacity={op[1]} d="M1352,2384l1296-624,304,624-1328,432-272-432Z" />
+      <path fill={f[2]} fillOpacity={op[2]} d="M1624,2816l1328-432-421.94,666.67c-242.06,136.43-574.19,105.37-750.19,9.37l-155.87-244.04Z" />
+      <g fill="none" stroke={ink} strokeLinecap="round" strokeLinejoin="round" strokeWidth={mono ? 70 : 60}>
+        <path d="M2152,672l800,1712-800,1264-800-1264,800-1712Z" />
+        <path d="M1352,2384l1296-624" />
+        <path d="M1624,2816l1328-432" />
+        <path d="M1779.87,3049.59c210.14,133.72,553.99,133.72,764.13-19.1" />
+      </g>
     </svg>
   )
 }

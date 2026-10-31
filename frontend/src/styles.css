@@ -21,8 +21,7 @@
   --radius: 10px;
   --rail: #13233a;
   --rail-hover: #22364f;
-  --logo-ring: #c9d4de;
-  --logo-disc: #2f7bc8;
+  --logo-ink: #f4f6f5;
   --on-accent: #ffffff;
   --user-bubble: #13233a;
   --stamp-bg: rgba(227, 241, 236, .55);
@@ -45,7 +44,7 @@ button, textarea, input { font: inherit; color: inherit; }
 .app { display: grid; grid-template-columns: 236px 1fr; min-height: 100vh; }
 .rail { background: var(--rail); color: #dfe7ef; display: flex; flex-direction: column; padding: 22px 14px; gap: 26px; position: sticky; top: 0; height: 100vh; }
 .brand { display: flex; align-items: center; gap: 12px; padding: 0 8px; }
-/* logo: open ring + disc with تم */
+/* logo: faceted gem (light outline on the dark rail) */
 .brand-mark { width: 50px; height: 50px; display: grid; place-items: center; }
 .brand-name { font-weight: 700; font-size: 1.2rem; color: #fff; }
 .brand-sub { font-size: .8rem; color: #9fb0c3; }
@@ -280,8 +279,7 @@ a.btn.primary { color: var(--on-accent); }
   --info-soft: #16253b;
   --rail: #0a1016;
   --rail-hover: #1b2733;
-  --logo-ring: #c9d4de;
-  --logo-disc: #3a86d4;
+  --logo-ink: #f4f6f5;
   --on-accent: #062219;
   --user-bubble: #284763;
   --stamp-bg: rgba(18, 48, 42, .7);
