@@ -12,3 +12,6 @@ dist/
 # scratch files not part of the project
 hello_claude.py
 backend/tests/*_sample.html
+
+# demo video materials (kept local)
+video/
