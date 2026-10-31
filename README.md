@@ -60,6 +60,8 @@ submission that breaks policy. The ablations show why: without the rules layer, 
 reached approvers; without the lookup tools, the agent mis-priced a request and routed it to the wrong approver.
 
 ### What Tam handles
+Full, detailed guide to every feature: [`docs/FEATURES.md`](docs/FEATURES.md).
+
 * **Purchase requests:** Low Value / RFQ (3 quotes) / mandatory competitive bidding / sole source /
   framework call-offs, approval tiers up to the CEO, HR headcount confirmation for new seats and new hires.
 * **Error catching before signatures:** totals, wrong G/L account, wrong method, vague justification,
